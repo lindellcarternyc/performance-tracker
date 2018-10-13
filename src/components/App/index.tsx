@@ -3,9 +3,14 @@ import * as React from 'react'
 import { ThemeProvider } from 'styles/styled-components'
 import { LightTheme } from 'styles/themes'
 
+import Calendar from 'components/Calendar'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 import Main from 'components/Main'
+
+import gigFactory from 'factories/gig.factory'
+
+const gig = gigFactory()
 
 const App: React.SFC<{}> = () => {
   return (
@@ -13,7 +18,7 @@ const App: React.SFC<{}> = () => {
       <div>
         <Header />
         <Main>
-          <div>Calendar</div>
+          <Calendar gigs={[gig]} />
         </Main>
         <Footer />
       </div>

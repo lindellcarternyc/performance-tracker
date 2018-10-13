@@ -13,6 +13,7 @@ const Title = styled.h1`
   text-align: center;
   color: ${({ theme }) => theme.accent};
   font-weight: 100;
+  font-size: 1.5rem;
 `
 
 const Header: React.SFC<{}> = () => {
