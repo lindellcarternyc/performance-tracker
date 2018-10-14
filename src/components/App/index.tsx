@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import Routes from 'routes'
+import RoutesComponent from 'routes'
 
 import { Provider } from 'react-redux'
 import initStore from 'store'
@@ -9,7 +9,6 @@ import initStore from 'store'
 import { ThemeProvider } from 'styles/styled-components'
 import { LightTheme } from 'styles/themes'
 
-// import Calendar from 'components/Calendar'
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 import Main from 'components/Main'
@@ -40,10 +39,9 @@ class App extends React.Component<{}, AppState> {
           <ThemeProvider theme={LightTheme}>
             <div>
               <Header />
-              <Main>
-                <Routes />
-                {/* <Calendar gigs={this.state.gigs} onSelectGig={this.onSelectGig} /> */}
-              </Main>
+                <Main>
+                  <RoutesComponent />
+                </Main>
               <Footer />
             </div>
           </ThemeProvider>
