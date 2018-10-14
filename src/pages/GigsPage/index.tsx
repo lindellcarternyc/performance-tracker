@@ -20,9 +20,6 @@ interface GigsPageDispatchProps {
 type GigsPageProps = GigsPageStateProps & GigsPageDispatchProps & RouteComponentProps<{}>
 
 class GigsPage extends React.Component<GigsPageProps> {
-  public componentDidMount() {
-    this.props.fetchGigs()
-  }
   public render() {
     return (
       <Calendar gigs={this.props.gigs} onSelectGig={this.onSelectGig} />
@@ -33,7 +30,7 @@ class GigsPage extends React.Component<GigsPageProps> {
     evt.preventDefault()
     evt.stopPropagation()
 
-    alert(JSON.stringify(gig))
+    this.props.history.push(`/gig/${gig.id}`)
   }
 }
 

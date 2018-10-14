@@ -5,6 +5,7 @@ import RoutesComponent from 'routes'
 
 import { Provider } from 'react-redux'
 import initStore from 'store'
+import { fetchGigs } from 'store/gigs/gig.thunks'
 
 import { ThemeProvider } from 'styles/styled-components'
 import { LightTheme } from 'styles/themes'
@@ -14,6 +15,7 @@ import Header from 'components/Header'
 import Main from 'components/Main'
 
 const store = initStore()
+store.dispatch(fetchGigs() as any)
 
 class App extends React.Component {
   public render() {
