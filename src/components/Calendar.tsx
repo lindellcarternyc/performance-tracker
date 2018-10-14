@@ -9,15 +9,18 @@ const localizer = BigCalendar.momentLocalizer(moment)
 
 interface CalendarProps {
   gigs: GigModel[]
+
+  onSelectGig: (gig: GigModel, evt: React.SyntheticEvent) => void
 }
 
 const Calendar: React.SFC<CalendarProps> = props => {
-  const { gigs } = props
+  const { gigs, onSelectGig } = props
 
   return (
     <BigCalendar 
       localizer={localizer}
       events={gigs}
+      onSelectEvent={onSelectGig}
     />
   )
 }
