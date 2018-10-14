@@ -39,7 +39,7 @@ class GigsPage extends React.Component<GigsPageProps> {
 
 const mapStateToProps = (state: StoreState): GigsPageStateProps => {
   return {
-    gigs: state.gigState.gigs
+    gigs: Object.keys(state.gigState.gigs).map(id => state.gigState.gigs[id])
   }
 }
 

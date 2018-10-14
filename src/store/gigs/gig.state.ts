@@ -1,14 +1,14 @@
 import { GigModel } from 'models/gig.model'
 
 export interface GigState {
-  gigs: GigModel[]
+  gigs: { [id: string]: GigModel }
   loading: boolean
   error: string | null
 }
 
 export const initialState = (): GigState => {
   return {
-    gigs: [],
+    gigs: { },
     loading: false,
     error: null
   }

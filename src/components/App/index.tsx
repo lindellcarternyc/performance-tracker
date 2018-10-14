@@ -13,25 +13,9 @@ import Footer from 'components/Footer'
 import Header from 'components/Header'
 import Main from 'components/Main'
 
-import { GigModel } from 'models/gig.model'
-import gigService from 'services/gig.service'
-
-interface AppState {
-  gigs: GigModel[]
-}
-
 const store = initStore()
 
-class App extends React.Component<{}, AppState> {
-  public readonly state: AppState = {
-    gigs: []
-  }
-
-  public async componentDidMount() {
-    const gigs = await gigService.gigs()
-    return this.setState({gigs})
-  }
-
+class App extends React.Component {
   public render() {
     return (
       <Provider store={store}>

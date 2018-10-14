@@ -6,7 +6,7 @@ const gigReducer = (state: GigState = initialState(), action: FETCH_GIG_ACTIONS)
     case '@Gigs/FETCH_REQUEST':
       return {
         ...state,
-        gigs: [],
+        gigs: { },
         error: null,
         loading: true
       }
