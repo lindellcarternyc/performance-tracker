@@ -1,19 +1,24 @@
 import * as React from 'react'
 
-import { Button, Title, Wrapper } from './styled-components'
+import { Menu, MenuItem, MenuMenu } from 'semantic-ui-react'
 
 interface HeaderProps {
   onClickHome: () => void
   onClickNewGig: () => void
+  onClickGigs: () => void
+
+  activeItem: string
 }
 
-const Header: React.SFC<HeaderProps> = props => {
+const  Header:React.SFC<HeaderProps> = props => {
   return (
-    <Wrapper>
-      <Button onClick={props.onClickHome}>Home</Button>
-      <Title>Performance Tracker</Title>
-      <Button onClick={props.onClickNewGig}>New Gig</Button>
-    </Wrapper>
+    <Menu fixed="top">
+      <MenuItem header={true} content="Gig Tracker" onClick={props.onClickHome} />
+      <MenuMenu position="right">
+        <MenuItem onClick={props.onClickGigs} active={props.activeItem === '/gigs'}>Calendar</MenuItem>
+        <MenuItem onClick={props.onClickNewGig} active={props.activeItem === '/new-gig'}>New Gig</MenuItem>
+      </MenuMenu>
+    </Menu>
   )
 }
 
