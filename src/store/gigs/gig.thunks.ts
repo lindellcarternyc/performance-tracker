@@ -2,6 +2,7 @@ import { Dispatch } from 'redux'
 
 import * as gigActions from './gig.actions'
 
+import { NewGigModel } from 'models/gig.model'
 import gigService from 'services/gig.service'
 
 export const fetchGigs = () => {
@@ -15,5 +16,18 @@ export const fetchGigs = () => {
       dispatch(gigActions.fetchGigsFailure(err))
     }
 
+  }
+}
+
+export const createGig = (newGig: NewGigModel) => {
+  return async (dispatch: Dispatch<gigActions.CREATE_GIG_ACTIONS>) => {
+    dispatch(gigActions.createGigRequest(newGig))
+
+    try {
+      const gig = await gigService.createGig(newGig)
+      dispatch(gigActions.createGigSuccess(gig))
+    } catch (err) {
+      dispatch(gigActions.createGigError(err))
+    }
   }
 }
