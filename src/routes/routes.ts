@@ -3,12 +3,13 @@ export interface Route {
   exact?: true
 }
 
-type RouteKeys = 'Home' | 'Gigs' | 'Gig'
+type RouteKeys = 'Home' | 'Gigs' | 'Gig' | 'NewGig'
 
 type RouteMap = { [K in RouteKeys]: Route }
 
 export const Routes: RouteMap = {
   Home: { path: '/', exact: true },
   Gigs: { path: '/gigs' },
-  Gig: { path: '/gig/:id'}
+  Gig: { path: '/gig/:id'},
+  NewGig: { path: '/new-gig'}
 }
