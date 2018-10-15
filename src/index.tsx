@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom'
 import App from 'components/App'
 
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import 'semantic-ui-css/semantic.min.css'
 import setGlobalStyles from 'styles/global-styles'
 
 import registerServiceWorker from './registerServiceWorker'
