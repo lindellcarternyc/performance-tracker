@@ -8,3 +8,17 @@ export interface GigModel {
   pay: number
   location: string
 }
+
+export interface NewGigModel {
+  title: string
+  start: {
+    date: string
+    time: string
+  }
+  end: {
+    date: string
+    time: string
+  }
+  pay: string
+  location: string
+}

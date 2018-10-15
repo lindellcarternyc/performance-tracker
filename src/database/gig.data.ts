@@ -40,6 +40,12 @@ GigInputs.forEach(input => {
 
 const getGigs = () => Promise.resolve(GigCollection)
 
+const addGig = (gig: GigModel) => {
+  GigCollection[gig.id] = gig
+  return Promise.resolve(gig)
+}
+
 export default { 
-  getGigs
+  getGigs,
+  addGig
 }
