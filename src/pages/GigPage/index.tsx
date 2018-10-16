@@ -1,8 +1,11 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
+import { Dispatch } from 'redux'
 
 import { StoreState } from 'store/store.state'
+
+import { deleteGig } from 'store/gigs/gig.thunks'
 
 import GigPageComponent from './GigPage.component'
 
@@ -14,9 +17,16 @@ interface GigPageStateProps {
   error: string | null
 }
 
-type GigPageProps = GigPageStateProps & RouteComponentProps<{id: string}>
+interface GigPageDispatchProps {
+  deleteGig: (id: string) => void
+}
+
+type GigPageProps = GigPageStateProps & GigPageDispatchProps & RouteComponentProps<{id: string}>
+
+
 
 class GigPageContainer extends React.Component<GigPageProps> {
+  
   public render() {
     if ( this.props.loading ) {
       return 'Loading'
@@ -27,12 +37,17 @@ class GigPageContainer extends React.Component<GigPageProps> {
     if ( this.gig === undefined ) {
       return 'No Gig'
     }
-    return <GigPageComponent gig={this.gig} />
+    return <GigPageComponent gig={this.gig} onClickDelete={this.onClickDelete} />
   }
 
   private get gig(): GigModel | undefined {
     const id = this.props.match.params.id
     return this.props.gig(id)
+  }
+
+  private onClickDelete = (id: string) => {
+    this.props.deleteGig(id)
+    this.props.history.push('/gigs')
   }
 }
 
@@ -45,5 +60,11 @@ const mapStateToProps = (state: StoreState): GigPageStateProps => {
   }
 }
 
-const GigPage = withRouter(connect(mapStateToProps)(GigPageContainer))
+const mapDispatchToProps = (dispatch: Dispatch): GigPageDispatchProps => {
+  return {
+    deleteGig: id => dispatch(deleteGig(id) as any)
+  }
+}
+
+const GigPage = withRouter(connect(mapStateToProps, mapDispatchToProps)(GigPageContainer))
 export default GigPage
