@@ -14,8 +14,7 @@ import Title from 'components/Title'
 import NewGigForm from './components/NewGigForm'
 
 interface NewGigPageStateProps {
-  loading: boolean
-  error: string | null
+  gigIds: string[]
 }
 
 interface NewGigPageDispatchProps {
@@ -24,13 +23,25 @@ interface NewGigPageDispatchProps {
 
 type NewGigPageProps = NewGigPageStateProps & NewGigPageDispatchProps & RouteComponentProps<{}>
 
+interface NewGigPageState {
+  loading: boolean
+}
+
 class NewGigPageContainer extends React.Component<NewGigPageProps> {
-  public componentWillReceiveProps(nextProps: NewGigPageProps) {
-    const { loading, error } = nextProps
-    if ( this.props.loading === true && loading === false && error === null ) {
-      this.props.history.push('/gigs')
+  public readonly state: NewGigPageState = {
+    loading: false
+  }
+  
+  public componentDidUpdate(prevProps: NewGigPageProps) {
+    if ( this.state.loading ) {
+      // tslint:disable-next-line:no-console
+      if ( this.props.gigIds.length > prevProps.gigIds.length ) {
+        this.setState({ loading: false })
+        return this.props.history.push('/gigs')
+      }
     }
   }
+
   public render() {
     return (
       <div
@@ -46,15 +57,13 @@ class NewGigPageContainer extends React.Component<NewGigPageProps> {
 
   private onSubmitNewGig = (newGig: NewGigModel) => {
     this.props.createGig(newGig)
+    return this.setState({loading: true})
   }
 }
 
 const mapStateToProps = (state: StoreState): NewGigPageStateProps => {
-  const {
-    error, loading
-  } = state.gigState
   return {
-    error, loading
+    gigIds: Object.keys(state.gigState.gigs)
   }
 }
 
