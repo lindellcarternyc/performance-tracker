@@ -9,6 +9,8 @@ export interface GigModel {
   location: string
 }
 
+export interface GigModelCollection { [id: string]: GigModel }
+
 export interface NewGigModel {
   title: string
   start: {
