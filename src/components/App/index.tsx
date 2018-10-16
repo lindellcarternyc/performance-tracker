@@ -1,11 +1,12 @@
 import * as React from 'react'
+import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import RoutesComponent from 'routes'
-
-import { Provider } from 'react-redux'
 import initStore from 'store'
-import { fetchGigs } from 'store/gigs/gig.thunks'
+import { fetchGigsSuccess } from 'store/gigs/gig.actions'
+
+import gigService from 'services/gig.service'
 
 import { ThemeProvider } from 'styles/styled-components'
 import { LightTheme } from 'styles/themes'
@@ -15,9 +16,14 @@ import Header from 'components/Header'
 import Main from 'components/Main'
 
 const store = initStore()
-store.dispatch(fetchGigs() as any)
 
 class App extends React.Component {
+  public componentDidMount() {
+    gigService.subscribeToGigs(gigs => {
+      store.dispatch(fetchGigsSuccess(gigs))
+    })
+  }
+
   public render() {
     return (
       <Provider store={store}>
@@ -35,14 +41,6 @@ class App extends React.Component {
       </Provider>
     )
   }
-
-  // private onSelectGig = (gig: GigModel, evt: React.SyntheticEvent) => {
-  //   evt.preventDefault()
-  //   evt.stopPropagation()
-
-  //   // tslint:disable-next-line:no-console
-  //   console.log(gig)
-  // }
 }
 
 export default App
