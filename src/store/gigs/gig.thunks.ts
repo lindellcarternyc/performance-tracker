@@ -31,3 +31,11 @@ export const createGig = (newGig: NewGigModel) => {
     }
   }
 }
+
+export const deleteGig = (id: string) => {
+  return async (dispatch: Dispatch<gigActions.DELETE_GIG_ACTIONS>) => {
+    dispatch(gigActions.deleteGigRequest(id))
+
+    gigService.deleteGig(id)
+  }
+}

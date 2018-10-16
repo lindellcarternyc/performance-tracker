@@ -36,6 +36,10 @@ class Database {
     this.gigsRef.update({[model.id]: model})
   }
 
+  public deleteGig = (id: string) => {
+    this.gigsRef.update({[id]: null})
+  }
+
   public getGigs = <T>() => {
     return this.db.ref('/gigs').once('value')
       .then(snapshot => {

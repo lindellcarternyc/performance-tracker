@@ -14,3 +14,5 @@ export const createGigError = (error: string) => actionCreator('@Gigs/CREATE_GIG
 
 export type CREATE_GIG_ACTIONS = ReturnType<typeof createGigRequest> | ReturnType<typeof createGigSuccess> | ReturnType<typeof createGigError>
 
+export const deleteGigRequest = (id: string) => actionCreator('@Gigs/DELETE_GIG_REQUEST', id)
+export type DELETE_GIG_ACTIONS = ReturnType<typeof deleteGigRequest>

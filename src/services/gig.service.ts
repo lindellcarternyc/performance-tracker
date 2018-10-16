@@ -73,8 +73,11 @@ const createGig = (newGig: NewGigModel)  => {
   return gigModel
 }
 
+const deleteGig = (id: string) => db.deleteGig(id)
+
 export default {
   gigs,
   createGig,
-  subscribeToGigs
+  subscribeToGigs,
+  deleteGig
 }
