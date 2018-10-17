@@ -1,6 +1,6 @@
 import actionCreator from 'store/action-creator'
 
-import { GigModel, NewGigModel } from 'models/gig.model'
+import { GigFormModel, GigModel } from 'models/gig.model'
 
 export const fetchGigsRequest = () => actionCreator('@Gigs/FETCH_REQUEST')
 export const fetchGigsSuccess = (gigs: { [id: string]: GigModel }) => actionCreator('@Gigs/FETCH_SUCCESS', gigs)
@@ -8,7 +8,7 @@ export const fetchGigsFailure = (error: string) => actionCreator('@Gigs/FETCH_FA
 
 export type FETCH_GIG_ACTIONS = ReturnType<typeof fetchGigsRequest> | ReturnType<typeof fetchGigsSuccess> | ReturnType<typeof fetchGigsFailure>
 
-export const createGigRequest = (newGig: NewGigModel) => actionCreator('@Gigs/CREATE_GIG_REQUEST', newGig)
+export const createGigRequest = (newGig: GigFormModel) => actionCreator('@Gigs/CREATE_GIG_REQUEST', newGig)
 export const createGigSuccess = (newGig: GigModel) => actionCreator('@Gigs/CREATE_GIG_SUCCESS', newGig)
 export const createGigError = (error: string) => actionCreator('@Gigs/CREATE_GIG_ERROR', error)
 

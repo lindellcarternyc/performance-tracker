@@ -8,7 +8,7 @@ import { StoreState } from 'store/store.state'
 
 import { createGig } from 'store/gigs/gig.thunks'
 
-import { NewGigModel } from 'models/gig.model'
+import { GigFormModel } from 'models/gig.model'
 
 import Title from 'components/Title'
 import NewGigForm from './components/NewGigForm'
@@ -18,7 +18,7 @@ interface NewGigPageStateProps {
 }
 
 interface NewGigPageDispatchProps {
-  createGig: (newGig: NewGigModel) => void
+  createGig: (newGig: GigFormModel) => void
 }
 
 type NewGigPageProps = NewGigPageStateProps & NewGigPageDispatchProps & RouteComponentProps<{}>
@@ -55,7 +55,7 @@ class NewGigPageContainer extends React.Component<NewGigPageProps> {
     )
   }
 
-  private onSubmitNewGig = (newGig: NewGigModel) => {
+  private onSubmitNewGig = (newGig: GigFormModel) => {
     this.props.createGig(newGig)
     return this.setState({loading: true})
   }

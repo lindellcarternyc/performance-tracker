@@ -2,17 +2,17 @@ import * as React from 'react'
 
 import { Button, Form, FormGroup } from 'semantic-ui-react'
 
-import { NewGigModel } from 'models/gig.model'
+import { GigFormModel } from 'models/gig.model'
 
 import Field from './Field'
 
 const isValid = (value: string): boolean => value.length > 0
 
 interface NewGigFormProps {
-  onSubmit: (data: NewGigModel) => void
+  onSubmit: (data: GigFormModel) => void
 }
 
-type NewGigFormState = NewGigModel
+type NewGigFormState = GigFormModel
 
 const initialState = (): NewGigFormState => {
   return {

@@ -2,7 +2,7 @@ import { Dispatch } from 'redux'
 
 import * as gigActions from './gig.actions'
 
-import { NewGigModel } from 'models/gig.model'
+import { GigFormModel } from 'models/gig.model'
 import gigService from 'services/gig.service'
 
 export const fetchGigs = () => {
@@ -19,7 +19,7 @@ export const fetchGigs = () => {
   }
 }
 
-export const createGig = (newGig: NewGigModel) => {
+export const createGig = (newGig: GigFormModel) => {
   return async (dispatch: Dispatch<gigActions.CREATE_GIG_ACTIONS>) => {
     dispatch(gigActions.createGigRequest(newGig))
 

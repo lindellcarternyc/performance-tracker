@@ -1,6 +1,6 @@
 import * as moment from 'moment'
 
-import { GigModel, NewGigModel } from 'models/gig.model'
+import { GigFormModel, GigModel } from 'models/gig.model'
 
 
 type GigFactoryParams = Partial<GigModel>
@@ -26,7 +26,7 @@ const gigFactory = (params: GigFactoryParams = { }): GigModel => {
   }
 }
 
-export const parseNewGigModel = (newGig: NewGigModel): GigModel => {
+export const parseNewGigModel = (newGig: GigFormModel): GigModel => {
   const {
     title, start, end, pay, location
   } = newGig

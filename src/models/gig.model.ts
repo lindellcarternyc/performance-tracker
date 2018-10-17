@@ -11,7 +11,7 @@ export interface GigModel {
 
 export interface GigModelCollection { [id: string]: GigModel }
 
-export interface NewGigModel {
+export interface GigFormModel {
   title: string
   start: {
     date: string

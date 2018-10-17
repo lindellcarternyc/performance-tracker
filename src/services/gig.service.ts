@@ -1,10 +1,5 @@
-// import gigData from 'database/gig.data'
-
 import { parseNewGigModel } from 'factories/gig.factory'
-import { GigModel,
-  //  GigModelCollection, 
-   GigModelCollection, 
-   NewGigModel} from 'models/gig.model'
+import { GigFormModel, GigModel, GigModelCollection } from 'models/gig.model'
 
 import Database from 'database/firebase'
 import { DatabaseCollection, DatabaseModel } from 'database/types'
@@ -66,7 +61,7 @@ const gigs = async (): Promise<{[id: string]: GigModel}> => {
   })
 }
 
-const createGig = (newGig: NewGigModel)  => {
+const createGig = (newGig: GigFormModel)  => {
   const gigModel = parseNewGigModel(newGig)
   const serialized = serializeGig(gigModel)
   db.create('gig', serialized)
