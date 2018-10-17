@@ -13,7 +13,9 @@ const getTime = (date: Date): string => moment(date).format('h:mm A')
 
 interface GigPageProps {
   gig: GigModel
+
   onClickDelete: (id: string) => void
+  onClickEdit: (id: string) => void
 }
 
 interface GigPageState {
@@ -32,7 +34,11 @@ class GigPage extends React.Component<GigPageProps, GigPageState> {
         <DeleteGigModal isOpen={this.state.isDeleteModalOpen} onClose={this.onCloseModal} confirm={this.confirmDelete} />
         <Wrapper>
           <Title>{gig.title}</Title>
-          <Button onClick={this.onClickDelete}>Delete</Button>
+          <Button.Group>
+            <Button onClick={this.onClickEdit}>Edit</Button>
+            <Button.Or />
+            <Button onClick={this.onClickDelete}>Delete</Button>
+          </Button.Group>
           <Detail title="Start time" text={getTime(gig.start)} />
           <Detail title="End time" text={getTime(gig.end)} />
           <Detail title="Pay" text={`$${gig.pay}.00`} />
@@ -56,6 +62,13 @@ class GigPage extends React.Component<GigPageProps, GigPageState> {
   private confirmDelete = () => {
     this.setState({isDeleteModalOpen: false})
     this.props.onClickDelete(this.props.gig.id)
+  }
+
+  private onClickEdit = (e: React.SyntheticEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    this.props.onClickEdit(this.props.gig.id)
   }
 }
 

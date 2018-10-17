@@ -37,7 +37,7 @@ class GigPageContainer extends React.Component<GigPageProps> {
     if ( this.gig === undefined ) {
       return 'No Gig'
     }
-    return <GigPageComponent gig={this.gig} onClickDelete={this.onClickDelete} />
+    return <GigPageComponent gig={this.gig} onClickDelete={this.onClickDelete} onClickEdit={this.onClickEdit} />
   }
 
   private get gig(): GigModel | undefined {
@@ -49,10 +49,13 @@ class GigPageContainer extends React.Component<GigPageProps> {
     this.props.deleteGig(id)
     this.props.history.push('/gigs')
   }
+
+  private onClickEdit = (id: string) => {
+    this.props.history.push(`/edit-gig/${id}`)
+  }
 }
 
 const mapStateToProps = (state: StoreState): GigPageStateProps => {
-  // const id = 'id'
   return {
     gig: id => state.gigState.gigs[id],
     loading: state.gigState.loading,
