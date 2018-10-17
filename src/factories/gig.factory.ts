@@ -28,19 +28,19 @@ const gigFactory = (params: GigFactoryParams = { }): GigModel => {
 
 export const parseNewGigModel = (newGig: GigFormModel): GigModel => {
   const {
-    title, start, end, pay, location
+    title, startDate, startTime, endDate, endTime, pay, location
   } = newGig
 
-  const startDate = generateDate(start)
-  const endDate = generateDate(end)
+  const start = generateDate({date: startDate, time: startTime})
+  const end = generateDate({date: endDate, time: endTime})
 
-  const id = generateGigId({ title, start: startDate, end: endDate })
+  const id = generateGigId({ title, start, end })
 
   return {
     id,
     title,
-    start: startDate,
-    end: endDate,
+    start,
+    end,
     pay: parseInt(pay, 10),
     location
   }
