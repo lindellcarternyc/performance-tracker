@@ -19,9 +19,11 @@ class Form<Data extends object> extends React.Component<FormProps<Data>, FormSta
   public render() {
     const { title, handlers } = this.props
     return (
-      <>
+      <div
+        style={{marginBottom: '2.5rem'}}
+      >
         <Title>{title}</Title>
-        {JSON.stringify(this.state)}
+        {/* {JSON.stringify(this.state)} */}
         <SemanticForm onSubmit={this.handleSubmit}>
           {this.props.children(this.api)}
           <SemanticForm.Group>
@@ -29,7 +31,7 @@ class Form<Data extends object> extends React.Component<FormProps<Data>, FormSta
             <Button content={handlers.submit.label} disabled={!this.isValid} />
           </SemanticForm.Group>
         </SemanticForm>
-      </>
+      </div>
     )
   }
 
