@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Routes } from './routes'
 
+import EditGigPage from 'pages/EditGig'
 import GigPage from 'pages/GigPage'
 import GigsPage from 'pages/GigsPage'
 import HomePage from 'pages/HomePage'
@@ -14,6 +15,7 @@ const RoutesComponent: React.SFC<{}> = () => {
       <Route path={Routes.Gigs.path} component={GigsPage} />
       <Route path={Routes.Gig.path} component={GigPage} />
       <Route path={Routes.NewGig.path} component={NewGigPage} />
+      <Route path={Routes.EditGig.path} component={EditGigPage} />
     </Switch>
   )
 }
