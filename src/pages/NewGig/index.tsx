@@ -10,7 +10,6 @@ import { createGig } from 'store/gigs/gig.thunks'
 
 import { GigFormModel } from 'models/gig.model'
 
-import Title from 'components/Title'
 import NewGigForm from './components/NewGigForm'
 
 interface NewGigPageStateProps {
@@ -44,14 +43,7 @@ class NewGigPageContainer extends React.Component<NewGigPageProps> {
 
   public render() {
     return (
-      <div
-        style={{
-          marginBottom: '2.5rem'
-        }}
-      >
-        <Title>New Gig</Title>
-        <NewGigForm onSubmit={this.onSubmitNewGig} />
-      </div>
+      <NewGigForm onSubmit={this.onSubmitNewGig} />
     )
   }
 
