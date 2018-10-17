@@ -1,6 +1,6 @@
 import actionCreator from 'store/action-creator'
 
-import { GigFormModel, GigModel } from 'models/gig.model'
+import { GigFormModel, GigModel, UpdateGigParams } from 'models/gig.model'
 
 export const fetchGigsRequest = () => actionCreator('@Gigs/FETCH_REQUEST')
 export const fetchGigsSuccess = (gigs: { [id: string]: GigModel }) => actionCreator('@Gigs/FETCH_SUCCESS', gigs)
@@ -16,3 +16,8 @@ export type CREATE_GIG_ACTIONS = ReturnType<typeof createGigRequest> | ReturnTyp
 
 export const deleteGigRequest = (id: string) => actionCreator('@Gigs/DELETE_GIG_REQUEST', id)
 export type DELETE_GIG_ACTIONS = ReturnType<typeof deleteGigRequest>
+
+export const updateGigRequest = (params: UpdateGigParams) => actionCreator('@Gigs/UPDATE_GIG_REQUEST', params)
+export type UPDATE_GIG_ACTIONS = ReturnType<typeof updateGigRequest>
+
+export type GIG_ACTIONS = FETCH_GIG_ACTIONS | CREATE_GIG_ACTIONS | DELETE_GIG_ACTIONS | UPDATE_GIG_ACTIONS

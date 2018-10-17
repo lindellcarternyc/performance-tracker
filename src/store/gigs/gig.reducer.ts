@@ -1,7 +1,7 @@
-import { CREATE_GIG_ACTIONS, FETCH_GIG_ACTIONS } from './gig.actions'
+import { GIG_ACTIONS} from './gig.actions'
 import { GigState, initialState } from './gig.state'
 
-const gigReducer = (state: GigState = initialState(), action: FETCH_GIG_ACTIONS | CREATE_GIG_ACTIONS): GigState => {
+const gigReducer = (state: GigState = initialState(), action: GIG_ACTIONS): GigState => {
   switch ( action.type ) {
     case '@Gigs/FETCH_REQUEST':
       return {
@@ -47,6 +47,19 @@ const gigReducer = (state: GigState = initialState(), action: FETCH_GIG_ACTIONS 
         ...state,
         loading: false,
         error: action.payload
+      }
+
+    case '@Gigs/DELETE_GIG_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        error: null
+      }
+
+    case '@Gigs/UPDATE_GIG_REQUEST':
+      return {
+        ...state,
+        loading: true
       }
     default:
       return state
