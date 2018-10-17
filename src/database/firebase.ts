@@ -36,6 +36,10 @@ class Database {
     this.gigsRef.update({[model.id]: model})
   }
 
+  public update = (model: DatabaseModel<GigModel>) => {
+    this.gigsRef.update({[model.id]: model})
+  }
+
   public deleteGig = (id: string) => {
     this.gigsRef.update({[id]: null})
   }
@@ -48,8 +52,6 @@ class Database {
   }
 
   private subscribeToGigs = () => {
-    // tslint:disable-next-line:no-console
-    console.log('db.subscribToGigs')
     this.gigsRef.on('value', snapshot => {
       if ( snapshot ) {
         // tslint:disable-next-line:no-console

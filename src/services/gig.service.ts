@@ -1,5 +1,5 @@
 import { parseNewGigModel } from 'factories/gig.factory'
-import { GigFormModel, GigModel, GigModelCollection } from 'models/gig.model'
+import { GigFormModel, GigModel, GigModelCollection, UpdateGigParams } from 'models/gig.model'
 
 import Database from 'database/firebase'
 import { DatabaseCollection, DatabaseModel } from 'database/types'
@@ -68,11 +68,21 @@ const createGig = (newGig: GigFormModel)  => {
   return gigModel
 }
 
+const updateGig = (params: UpdateGigParams) => {
+  const gigModel: GigModel = {
+    ...parseNewGigModel(params.updateModel),
+    id: params.id
+  }
+  const serialized = serializeGig(gigModel)
+  db.update(serialized)
+}
+
 const deleteGig = (id: string) => db.deleteGig(id)
 
 export default {
   gigs,
   createGig,
   subscribeToGigs,
-  deleteGig
+  deleteGig,
+  updateGig
 }
